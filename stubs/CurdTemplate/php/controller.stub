@@ -1,0 +1,35 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Controllers\Admin\BaseController;
+{{use-request}}
+{{use-list}}
+{{use-model}}
+
+class {{class-name}} extends BaseController
+{
+    public function index(IndexRequest $request, {{list-name}} $list)
+    {
+        return $list->index($request);
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $data = {{model-name}}::create($request->all());
+
+        return created($data);
+    }
+
+    public function show({{model-name}} ${{$model-name-lower}})
+    {
+        return ${{$model-name-lower}};
+    }
+
+    public function update(UpdateRequest $request, {{model-name}} ${{$model-name-lower}})
+    {
+        ${{$model-name-lower}}->update($request->all());
+
+        return updated();
+    }
+}

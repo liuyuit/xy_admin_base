@@ -1,0 +1,2581 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "material",
+        "contact": {
+            "name": "Material",
+            "email": "material@mail.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/material/add-content": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "增加物料内容",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\AddContentController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    },
+                                    "content_text": {
+                                        "$ref": "#/components/schemas/content_text"
+                                    },
+                                    "content_imgs": {
+                                        "$ref": "#/components/schemas/content_imgs"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/material_body"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/backgrounds": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "物料海报背景图列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\BackgroundsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/background_body"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/create-material": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "创建物料",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\CreateMaterialController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "$ref": "#/components/schemas/title"
+                                    },
+                                    "subhead": {
+                                        "$ref": "#/components/schemas/subhead"
+                                    },
+                                    "price": {
+                                        "$ref": "#/components/schemas/price"
+                                    },
+                                    "able_to_return": {
+                                        "$ref": "#/components/schemas/able_to_return"
+                                    },
+                                    "watermark": {
+                                        "$ref": "#/components/schemas/watermark"
+                                    },
+                                    "sold_out_at": {
+                                        "$ref": "#/components/schemas/sold_out_at"
+                                    },
+                                    "background_id": {
+                                        "$ref": "#/components/schemas/background_id"
+                                    },
+                                    "free_content_text": {
+                                        "$ref": "#/components/schemas/free_content_text"
+                                    },
+                                    "free_content_imgs": {
+                                        "$ref": "#/components/schemas/free_content_imgs"
+                                    },
+                                    "content_text": {
+                                        "$ref": "#/components/schemas/content_text"
+                                    },
+                                    "content_imgs": {
+                                        "$ref": "#/components/schemas/content_imgs"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/material_without_relation"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/delete": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "删除物料",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\MaterialController::delete",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/open": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "内容公开",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\MaterialController::open",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/sold-out": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "下架物料",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\MaterialController::soldOut",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/update-background": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "修改物料海报背景图，重新生成海报图",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\MaterialController::updateBackground",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    },
+                                    "background_id": {
+                                        "$ref": "#/components/schemas/background_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/material_without_relation"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/notice-fans": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "通知粉丝",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\NoticeFansController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "notice_fans_type": {
+                                        "$ref": "#/components/schemas/notice_fans_type"
+                                    },
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/subscribe-materials": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "物料关注用户列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\SubscribeMaterialsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "type": {
+                                        "$ref": "#/components/schemas/subscribe_material_type"
+                                    },
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/subscribe_material_with_user"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/material/upload-image": {
+            "post": {
+                "tags": [
+                    "Api.Material"
+                ],
+                "summary": "上传图片",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Material\\UploadImageController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "image": {
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "path": {
+                                                    "$ref": "#/components/schemas/path"
+                                                },
+                                                "url": {
+                                                    "$ref": "#/components/schemas/url"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/my-material/decide-correctness": {
+            "post": {
+                "tags": [
+                    "Api.MyMaterial"
+                ],
+                "summary": "判断这个料是否正确",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\MyMaterial\\DecideCorrectnessController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    },
+                                    "correct": {
+                                        "$ref": "#/components/schemas/correct"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/my-material/modify-decide-correctness": {
+            "post": {
+                "tags": [
+                    "Api.MyMaterial"
+                ],
+                "summary": "作者判定物料正确性之后，30 分钟内管理员可以调用此接口修改判定结果",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\MyMaterial\\ModifyDecideCorrectnessController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/my-material/purchased-materials": {
+            "post": {
+                "tags": [
+                    "Api.MyMaterial"
+                ],
+                "summary": "已购买的物料列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\MyMaterial\\PurchasedMaterialsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    },
+                                    "keyword": {
+                                        "$ref": "#/components/schemas/keyword"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/my-material/sold-materials": {
+            "post": {
+                "tags": [
+                    "Api.MyMaterial"
+                ],
+                "summary": "我卖的料",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\MyMaterial\\SoldMaterialsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    },
+                                    "keyword": {
+                                        "$ref": "#/components/schemas/keyword"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/material_body"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/income-record": {
+            "post": {
+                "tags": [
+                    "Api.Pay"
+                ],
+                "summary": "summary",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Pay\\IncomeRecordController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/material-item": {
+            "post": {
+                "tags": [
+                    "Api.Pay"
+                ],
+                "summary": "物料权限详情",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Pay\\MaterialItemController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "purchasable": {
+                                                    "$ref": "#/components/schemas/purchasable"
+                                                },
+                                                "readable": {
+                                                    "$ref": "#/components/schemas/readable"
+                                                },
+                                                "is_owner": {
+                                                    "$ref": "#/components/schemas/is_owner"
+                                                },
+                                                "material": {
+                                                    "$ref": "#/components/schemas/material_body"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/payment-gateway": {
+            "post": {
+                "tags": [
+                    "Api.Pay"
+                ],
+                "summary": "支付方式列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Pay\\PaymentGatewayController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/credential"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/pre-order": {
+            "post": {
+                "tags": [
+                    "Api.Pay"
+                ],
+                "summary": "预下单",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Pay\\PreOrderController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "material_id": {
+                                        "$ref": "#/components/schemas/material_id"
+                                    },
+                                    "payment_gateway": {
+                                        "$ref": "#/components/schemas/payment_gateway"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/pay_response"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/withdraw": {
+            "post": {
+                "tags": [
+                    "Api.Pay"
+                ],
+                "summary": "提现接口，因商户号未开通权限，暂不可用",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Pay\\WithdrawController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "money": {
+                                        "$ref": "#/components/schemas/money"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/selected-material/backgrounds": {
+            "post": {
+                "tags": [
+                    "Api.SelectedMaterial"
+                ],
+                "summary": "精选料包海报背景图列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\SelectedMaterial\\BackgroundsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/background_body"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/selected-material/my-material": {
+            "post": {
+                "tags": [
+                    "Api.SelectedMaterial"
+                ],
+                "summary": "我的物料列表（附带是否被选为精品料包标识）",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\SelectedMaterial\\MyMaterialController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/material_without_relation"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/selected-material/selected-materials": {
+            "post": {
+                "tags": [
+                    "Api.SelectedMaterial"
+                ],
+                "summary": "查看别人的精品料包列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\SelectedMaterial\\SelectedMaterialsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    },
+                                    "author_uid": {
+                                        "$ref": "#/components/schemas/author_uid"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/material_without_relation"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/selected-material/set": {
+            "post": {
+                "tags": [
+                    "Api.SelectedMaterial"
+                ],
+                "summary": "设置精品料包",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\SelectedMaterial\\SetController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    },
+                                    "material_ids": {
+                                        "description": "选中的物料 id，数组格式",
+                                        "type": "interge",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/test/transaction": {
+            "post": {
+                "tags": [
+                    "Api.Test"
+                ],
+                "summary": "summary",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Test\\TransactionController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/fans": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "粉丝列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\FansController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/subscribe_with_fans"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "登录（step 2）",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\LoginController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/me": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "我的个人信息",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\MeController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/me"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/me/update": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "修改我的个人信息",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\MeController::update",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "personal_signature": {
+                                        "$ref": "#/components/schemas/personal_signature"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/me"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/refresh-token": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "刷新 token（step 3）",
+                "description": "当 access_token 过期但 refresh_token 仍在有效期内时，需要请求此接口刷新 token 。如果 refresh_token 也已过期，此接口将响应 code 为 -1002。此时需要用户重新授权",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\RefreshTokenController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "uid": {
+                                        "$ref": "#/components/schemas/uid"
+                                    },
+                                    "sub_uid": {
+                                        "$ref": "#/components/schemas/sub_uid"
+                                    },
+                                    "refresh_token": {
+                                        "$ref": "#/components/schemas/refresh_token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/token_body"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/subscriptions": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "关注列表",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\SubscriptionsController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "$ref": "#/components/schemas/page"
+                                    },
+                                    "per_page": {
+                                        "$ref": "#/components/schemas/per_page"
+                                    }
+                                },
+                                "type": "object",
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/LoginedApiBody"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/subscribe_with_fans"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/user": {
+            "post": {
+                "tags": [
+                    "Api.User"
+                ],
+                "summary": "查看作者的个人信息",
+                "description": "description",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\User\\UserController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginedApiBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/auth/lead-to-authorize": {
+            "post": {
+                "tags": [
+                    "Api.Wx"
+                ],
+                "summary": "跳转到微信公众号授权页，以完成用户登录 (step 1)",
+                "description": "用户授权登录后，将跳转到公众号首页，并附带用户参数，需要前端在公众号首页通过请求参数用户信息。\n     例如用户确认授权后将会 302 重定向到以下地址。\n    http://api.material.liuyublog.com/storage/index.html?uid=1&sub_uid=1&access_token=160a6721939adf&refresh_token=160a6721939aed&expires_in=86400&refresh_token_expires_in=2592000",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Wx\\Auth\\LeadToAuthorizeController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "redirect_client_url": {
+                                        "$ref": "#/components/schemas/redirect_client_url"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "uid": {
+                                            "$ref": "#/components/schemas/uid"
+                                        },
+                                        "sub_uid": {
+                                            "$ref": "#/components/schemas/sub_uid"
+                                        },
+                                        "access_token": {
+                                            "$ref": "#/components/schemas/access_token"
+                                        },
+                                        "refresh_token": {
+                                            "$ref": "#/components/schemas/refresh_token"
+                                        },
+                                        "expires_in": {
+                                            "$ref": "#/components/schemas/expires_in"
+                                        },
+                                        "refresh_token_expires_in": {
+                                            "$ref": "#/components/schemas/refresh_token_expires_in"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wx/js-sdk-config": {
+            "post": {
+                "tags": [
+                    "Api.Wx"
+                ],
+                "summary": "JS-SDK 通过 config 接口注入权限验证配置",
+                "description": "所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用）\n     详见文档 https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#4",
+                "operationId": "App\\Http\\Controllers\\Api\\V1\\Wx\\JsSdkConfigController::index",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "jsApis": {
+                                        "description": "需要使用的JS接口列表，数组格式",
+                                        "type": "string"
+                                    },
+                                    "debug": {
+                                        "description": "是否开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。",
+                                        "type": "interge",
+                                        "enum": [
+                                            1,
+                                            0
+                                        ]
+                                    },
+                                    "url": {
+                                        "description": "非必传，自动获取。 当前网页的URL，不包含#及其后面部分。",
+                                        "type": "string",
+                                        "example": "http://api.material.liuyublog.com/storage/mp/"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/code"
+                                        },
+                                        "msg": {
+                                            "$ref": "#/components/schemas/msg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "created_at": {
+                "description": "创建时间",
+                "type": "string",
+                "example": "2021-04-21 21:22:01"
+            },
+            "updated_at": {
+                "$ref": "#/components/schemas/updated_at"
+            },
+            "id": {
+                "description": "id",
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+            },
+            "name": {
+                "description": "名称",
+                "type": "string",
+                "example": "abc"
+            },
+            "keyword": {
+                "description": "模糊搜索用的关键词",
+                "type": "string",
+                "example": "关键字"
+            },
+            "gender": {
+                "description": "性别(0-未知,1-男,2-女)",
+                "type": "integer",
+                "format": "int16",
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "example": 0
+            },
+            "phone": {
+                "description": "手机号码",
+                "type": "string",
+                "example": "13600001111"
+            },
+            "maskphone": {
+                "description": "掩码后的手机号码",
+                "type": "string",
+                "example": "136****1111"
+            },
+            "email": {
+                "description": "邮箱地址",
+                "type": "string",
+                "example": "test@ggxx.com"
+            },
+            "ip": {
+                "description": "IP地址",
+                "type": "string",
+                "example": "192.168.1.101"
+            },
+            "page": {
+                "description": "第几页，从 1 开始",
+                "type": "integer",
+                "example": "1"
+            },
+            "per_page": {
+                "description": "每页几条数据，范围在 1 - 50 之间",
+                "type": "integer",
+                "example": "10"
+            },
+            "code": {
+                "description": "状态码，0 表示成功，其他表示失败，此时需要将 msg 中的信息通过弹窗展示给用户",
+                "type": "integer",
+                "example": "0"
+            },
+            "msg": {
+                "description": "提示信息",
+                "type": "string",
+                "example": "成功"
+            },
+            "redirect_client_url": {
+                "description": "授权成功后要跳转的前端页面地址，如果用 get 方式传参，需要将此参数 urlendoe。例如\n *  http://api.material.liuyublog.com/storage/mp/%23/pages/preview/index?id=8",
+                "type": "string",
+                "example": "https://api.material.liuyublog.com/storage/mp/#/pages/preview/index?id=8"
+            },
+            "data": {
+                "description": "响应数据，对象或者数组",
+                "type": "array",
+                "items": {}
+            },
+            "title": {
+                "description": "主标题",
+                "type": "string",
+                "example": "主标题"
+            },
+            "subhead": {
+                "description": "副标题",
+                "type": "string",
+                "example": "副标题"
+            },
+            "price": {
+                "description": "价格",
+                "type": "string",
+                "example": "1.22"
+            },
+            "able_to_return": {
+                "description": "1：不对返还； 0：不返还",
+                "type": "integer",
+                "enum": [
+                    1,
+                    0
+                ],
+                "example": "1"
+            },
+            "watermark": {
+                "description": "水印",
+                "type": "string",
+                "example": "水印"
+            },
+            "sold_out_at": {
+                "description": "定时下架时间戳，为 null 表示不定时下架",
+                "type": "integer",
+                "example": "1621604563"
+            },
+            "correct": {
+                "description": "判定结果；0:未判定；1:正确；2:错误",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "example": "1"
+            },
+            "opened": {
+                "description": "是否已公开；0:未公开；1:已公开",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1
+                ],
+                "example": "1"
+            },
+            "poster_url": {
+                "description": "海报图片 url",
+                "type": "string",
+                "example": "http://api.material.liuyublog.com/images/poster.jpg"
+            },
+            "background_body": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/id"
+                    },
+                    "img_path": {
+                        "$ref": "#/components/schemas/img_path"
+                    },
+                    "img_url": {
+                        "$ref": "#/components/schemas/img_url"
+                    }
+                },
+                "type": "object"
+            },
+            "path": {
+                "description": "文件路径",
+                "type": "string",
+                "example": "image/material/2021/5/25/hDhjeTUWeT6RtCQJtRwnHX3oKGCdiFyJrSSGGaZn.png"
+            },
+            "url": {
+                "description": "文件链接",
+                "type": "string",
+                "example": "http://api.material.local:81/storage/image/material/2021/05/26/oeJpr3NM6cCiZYwSGI6soo25VBdCmYLd9fgsD2l0.png"
+            },
+            "img_path": {
+                "description": "图片路径",
+                "type": "string",
+                "example": "image/system/background_blue.jpg"
+            },
+            "img_url": {
+                "description": "图片链接",
+                "type": "string",
+                "example": "http://api.material.local:81/storage/image/system/background_blue.jpg"
+            },
+            "material_id": {
+                "description": "物料表 ID， 创建物料后生成的 ID。",
+                "type": "integer",
+                "example": "1"
+            },
+            "text": {
+                "description": "文本内容",
+                "type": "string",
+                "example": "text content example"
+            },
+            "is_free": {
+                "description": "是否为免费内容，1：是；0：否",
+                "type": "integer",
+                "example": "1"
+            },
+            "selected": {
+                "description": "是否为精品料；1： 是；0：否",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1
+                ],
+                "example": 1
+            },
+            "material_content_img": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/id"
+                    },
+                    "img_url": {
+                        "$ref": "#/components/schemas/img_url"
+                    }
+                },
+                "type": "object"
+            },
+            "material_content": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/id"
+                    },
+                    "text": {
+                        "$ref": "#/components/schemas/text"
+                    },
+                    "is_free": {
+                        "$ref": "#/components/schemas/is_free"
+                    },
+                    "selected": {
+                        "$ref": "#/components/schemas/selected"
+                    },
+                    "content_imgs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/material_content_img"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "material_without_relation": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/id"
+                    },
+                    "uid": {
+                        "$ref": "#/components/schemas/uid"
+                    },
+                    "title": {
+                        "$ref": "#/components/schemas/title"
+                    },
+                    "subhead": {
+                        "$ref": "#/components/schemas/subhead"
+                    },
+                    "price": {
+                        "$ref": "#/components/schemas/price"
+                    },
+                    "able_to_return": {
+                        "$ref": "#/components/schemas/able_to_return"
+                    },
+                    "correct": {
+                        "$ref": "#/components/schemas/correct"
+                    },
+                    "waiting_for_decision_effected": {
+                        "$ref": "#/components/schemas/waiting_for_decision_effected"
+                    },
+                    "opened": {
+                        "$ref": "#/components/schemas/opened"
+                    },
+                    "watermark": {
+                        "$ref": "#/components/schemas/watermark"
+                    },
+                    "sold_out_at": {
+                        "$ref": "#/components/schemas/sold_out_at"
+                    },
+                    "number_of_sales": {
+                        "$ref": "#/components/schemas/number_of_sales"
+                    },
+                    "poster_url": {
+                        "$ref": "#/components/schemas/poster_url"
+                    }
+                },
+                "type": "object"
+            },
+            "material_body": {
+                "properties": {
+                    "contents": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/material_content"
+                        }
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/user"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/material_without_relation"
+                    }
+                ]
+            },
+            "free_content_text": {
+                "description": "免费文本内容",
+                "type": "string",
+                "example": "free_content_text example"
+            },
+            "free_content_img": {
+                "description": "免费图片内容",
+                "type": "string",
+                "example": "image/material/2021/06/04/poster60b90116e73a5.jpg"
+            },
+            "free_content_imgs": {
+                "description": "免费图片内容，要用 free_content_imgs[] 的方式传入多个元素",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/free_content_img"
+                }
+            },
+            "content_text": {
+                "description": "收费文本内容",
+                "type": "string",
+                "example": "content_text example"
+            },
+            "content_img": {
+                "description": "收费图片内容",
+                "type": "string",
+                "example": "image/material/2021/06/04/poster60b90116e73a5.jpg"
+            },
+            "content_imgs": {
+                "description": "收费图片内容，要用 content_imgs[] 的方式传入多个元素",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/free_content_img"
+                }
+            },
+            "number_of_sales": {
+                "description": "销量",
+                "type": "interge",
+                "example": "10"
+            },
+            "purchasable": {
+                "description": "是否可以购买，1：是；0：否",
+                "type": "interge",
+                "example": "1"
+            },
+            "readable": {
+                "description": "是否可以阅读付费内容，1：是；0：否",
+                "type": "interge",
+                "example": "1"
+            },
+            "is_owner": {
+                "description": "该用户是不是这个物料的创建者，1：是；0：否",
+                "type": "interge",
+                "example": "1"
+            },
+            "waiting_for_decision_effected": {
+                "description": "是否正在等待判定结果生效；1:是；0:否。 waiting_for_decision_effected = 1 并且 correct = 2 ，为退款中状态。 waiting_for_decision_effected = 0 并且 correct = 2 ，为已退款状态",
+                "type": "interge",
+                "example": "1"
+            },
+            "notice_fans_type": {
+                "description": "通知粉丝类型， paid_only：只通知付费粉丝； all： 通知全部粉丝",
+                "type": "string",
+                "enum": [
+                    "paid_only",
+                    "all"
+                ],
+                "example": "paid_only"
+            },
+            "subscribe_material_type": {
+                "description": "关注物料类型，0:未付款；1：已付款；2：已阅",
+                "type": "inteege",
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "example": "1"
+            },
+            "subscribe_material": {
+                "properties": {
+                    "type": {
+                        "$ref": "#/components/schemas/subscribe_material_type"
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/id"
+                    }
+                },
+                "type": "object"
+            },
+            "subscribe_material_with_user": {
+                "properties": {
+                    "user": {
+                        "$ref": "#/components/schemas/user"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/subscribe_material"
+                    }
+                ]
+            },
+            "background_id": {
+                "description": "material/backgrounds 接口获取的 id",
+                "type": "inteege",
+                "example": "1"
+            },
+            "sub_uid": {
+                "description": "用户子账号id",
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+            },
+            "sub_username": {
+                "description": "子账号用户名",
+                "type": "string",
+                "example": "SubUserA"
+            },
+            "SubUserBody": {
+                "properties": {
+                    "name": {
+                        "$ref": "#/components/schemas/sub_username"
+                    },
+                    "uid": {
+                        "$ref": "#/components/schemas/uid"
+                    }
+                },
+                "type": "object"
+            },
+            "SubUser": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/sub_uid"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SubUserBody"
+                    }
+                ]
+            },
+            "access_token": {
+                "description": "用于验证权限的token,当 token 过期时，请求接口将会响应 code 为 -1001。此时可以请求刷新 token 接口。重新获取 token",
+                "type": "string",
+                "example": "78657360364647286045dbeb15ba6"
+            },
+            "refresh_token": {
+                "description": "刷新access_token,用于获取新的access_token和refresh_token，并且刷新过期时间",
+                "type": "string",
+                "example": "78657360364647286045dbeb15f8f"
+            },
+            "expires_in": {
+                "description": "access_token剩余有效时间,单位(秒)",
+                "type": "integer",
+                "example": "86400"
+            },
+            "refresh_token_expires_in": {
+                "description": "refresh_token剩余有效时间,单位(秒)",
+                "type": "integer",
+                "example": "2592000"
+            },
+            "token_body": {
+                "properties": {
+                    "access_token": {
+                        "$ref": "#/components/schemas/access_token"
+                    },
+                    "refresh_token": {
+                        "$ref": "#/components/schemas/refresh_token"
+                    },
+                    "expires_in": {
+                        "$ref": "#/components/schemas/expires_in"
+                    },
+                    "refresh_token_expires_in": {
+                        "$ref": "#/components/schemas/refresh_token_expires_in"
+                    }
+                },
+                "type": "object"
+            },
+            "rest": {
+                "description": "json 字符串，客户端信息，如机型、系统、ip 等信息",
+                "type": "string"
+            },
+            "BasicReportApi": {
+                "description": "上报数据的 api 接口基础请求参数",
+                "properties": {
+                    "rest": {
+                        "$ref": "#/components/schemas/rest"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthorizedApiBody": {
+                "description": "需要鉴权的 API 接口请求参数",
+                "properties": {
+                    "access_token": {
+                        "$ref": "#/components/schemas/access_token"
+                    },
+                    "uid": {
+                        "$ref": "#/components/schemas/uid"
+                    }
+                },
+                "type": "object"
+            },
+            "ReportAuthorizedApi": {
+                "description": "上报数据以及鉴权的 api 接口基础请求参数",
+                "properties": {
+                    "rest": {
+                        "$ref": "#/components/schemas/rest"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthorizedApiBody"
+                    }
+                ]
+            },
+            "LoginedApiBody": {
+                "description": "已经登陆的 API 接口请求参数",
+                "properties": {
+                    "access_token": {
+                        "$ref": "#/components/schemas/access_token"
+                    },
+                    "uid": {
+                        "$ref": "#/components/schemas/uid"
+                    },
+                    "sub_uid": {
+                        "$ref": "#/components/schemas/sub_uid"
+                    }
+                },
+                "type": "object"
+            },
+            "ReportLoginedApi": {
+                "description": "上报数据并且已经登录的 api 接口基础请求参数",
+                "properties": {
+                    "rest": {
+                        "$ref": "#/components/schemas/rest"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LoginedApiBody"
+                    }
+                ]
+            },
+            "uid": {
+                "description": "用户ID",
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+            },
+            "avatar": {
+                "description": "头像url",
+                "type": "string",
+                "example": "https://thirdwx.qlogo.cn/mmopen/vi_32/NIAuuyMibmEQ/132"
+            },
+            "balance": {
+                "description": "余额",
+                "type": "string",
+                "example": "12.23"
+            },
+            "personal_signature": {
+                "description": "用户个性签名",
+                "type": "string",
+                "example": "我的个性签名"
+            },
+            "nickname": {
+                "description": "用户昵称",
+                "type": "string",
+                "example": "昵称"
+            },
+            "user_body": {
+                "properties": {
+                    "nickname": {
+                        "$ref": "#/components/schemas/nickname"
+                    },
+                    "avatar": {
+                        "$ref": "#/components/schemas/avatar"
+                    },
+                    "personal_signature": {
+                        "$ref": "#/components/schemas/personal_signature"
+                    },
+                    "qrcode_url": {
+                        "$ref": "#/components/schemas/qrcode_url"
+                    }
+                },
+                "type": "object"
+            },
+            "user": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/uid"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/user_body"
+                    }
+                ]
+            },
+            "me": {
+                "properties": {
+                    "total_income": {
+                        "$ref": "#/components/schemas/total_income"
+                    },
+                    "today_income": {
+                        "$ref": "#/components/schemas/today_income"
+                    },
+                    "balance": {
+                        "$ref": "#/components/schemas/balance"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/user"
+                    }
+                ]
+            },
+            "total_income": {
+                "description": "出售物料获得的累计收益",
+                "type": "string",
+                "example": "30.99"
+            },
+            "today_income": {
+                "description": "出售物料获得的今日收益",
+                "type": "string",
+                "example": "10.99"
+            },
+            "qrcode_url": {
+                "description": "个人主页二维码 url",
+                "type": "string",
+                "example": "http://api.material.local:80/storage/image/qrcode/2021/06/25/qrcode_1_60d5d40869d9b.jpg"
+            },
+            "username": {
+                "description": "用户名称",
+                "type": "string",
+                "example": "UserA"
+            },
+            "fans_type": {
+                "description": "粉丝类型，paid： 付过费的粉丝（星标粉丝），unpaid：没有付过费的粉丝",
+                "type": "string",
+                "enum": [
+                    "paid",
+                    "unpaid"
+                ],
+                "example": "unpaid"
+            },
+            "subscription": {
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/uid"
+                    },
+                    "fans_type": {
+                        "$ref": "#/components/schemas/fans_type"
+                    }
+                },
+                "type": "object"
+            },
+            "subscribe_with_fans": {
+                "properties": {
+                    "fans": {
+                        "$ref": "#/components/schemas/user"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/subscription"
+                    }
+                ]
+            },
+            "subscribe_with_subscription": {
+                "properties": {
+                    "subscribe": {
+                        "$ref": "#/components/schemas/user"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/subscription"
+                    }
+                ]
+            },
+            "money": {
+                "description": "金额，单位元，两位小数",
+                "type": "string",
+                "example": "2.65"
+            },
+            "author_uid": {
+                "description": "作者的 uid",
+                "type": "interge",
+                "example": "1"
+            },
+            "payment_gateway": {
+                "description": "支付方式；wechat_mp: 微信公众号支付； ali_wap： 支付宝手机网站支付",
+                "type": "string",
+                "enum": [
+                    "wechat_mp",
+                    "ali_wap"
+                ],
+                "example": "wechat_mp"
+            },
+            "flag": {
+                "description": "标识；wechat: 微信； ali： 支付宝",
+                "type": "string",
+                "enum": [
+                    "wechat",
+                    "ali"
+                ],
+                "example": "wechat"
+            },
+            "credential": {
+                "properties": {
+                    "payment_gateway": {
+                        "$ref": "#/components/schemas/payment_gateway"
+                    },
+                    "flag": {
+                        "$ref": "#/components/schemas/flag"
+                    }
+                },
+                "type": "object"
+            },
+            "order_no": {
+                "description": "订单号",
+                "type": "string",
+                "example": "20210621213646358889"
+            },
+            "pay_type": {
+                "description": "支付类型，这个字段决定了用什么方式拉起支付。wechat_mp： 微信公众号支付。wap_url：手机网站",
+                "type": "string",
+                "enum": [
+                    "wechat_mp",
+                    "wap_url"
+                ],
+                "example": "wechat_mp"
+            },
+            "pay_content": {
+                "description": "前端拉起支付所需的数据，具体数据结构由 type 决定",
+                "type": "string",
+                "example": "alipays://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2Fqr.alipay.com%2Fbax08630ka42lybxvleq5091"
+            },
+            "pay_response": {
+                "properties": {
+                    "no": {
+                        "$ref": "#/components/schemas/order_no"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/pay_type"
+                    },
+                    "content": {
+                        "$ref": "#/components/schemas/pay_content"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "uid": {
+                "name": "uid",
+                "in": "path",
+                "description": "用户ID",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/uid"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Api.User",
+            "description": "用户"
+        },
+        {
+            "name": "Api.Wx",
+            "description": "微信"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

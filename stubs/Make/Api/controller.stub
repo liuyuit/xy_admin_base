@@ -1,0 +1,49 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Controllers\Api\V1\BaseController;
+{{requestUse}}
+
+class {{controllerClassName}} extends BaseController
+{
+    /**
+     * @OA\Post(
+     *     path="{{httpPath}}",
+     *     tags={"{{tag}}"},
+     *     summary="summary",
+     *     description="description",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="application/x-www-form-urlencoded",
+     *              @OA\Schema(
+     *                  ref="#/components/schemas/LoginedApiBody",
+     *              )
+     *          )
+     *     ),
+     *     @OA\Response(
+     *          response="200",
+     *          description="success",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="code",
+     *                  ref="#/components/schemas/code",
+     *              ),
+     *              @OA\Property(
+     *                  property="msg",
+     *                  ref="#/components/schemas/msg",
+     *              ),
+     *          ),
+     *     ),
+     * )
+     * @param IndexRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(IndexRequest $request)
+    {
+
+        return apiSuccess();
+    }
+}

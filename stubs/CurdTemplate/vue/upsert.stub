@@ -1,0 +1,93 @@
+<template>
+  <el-dialog width="400px" :title="(!dataForm.id ? '新增' : '修改') + '公会'" :close-on-click-modal="false" :visible.sync="visible">
+    <el-form ref="dataForm" label-width="100px" :model="dataForm" :rules="rules" @keyup.enter.native="dataFormSubmit()">
+      {{content}}
+    </el-form>
+
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="visible = false">取消</el-button>
+      <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
+    </span>
+  </el-dialog>
+</template>
+
+<script>
+import RequestResource from '@/api/{{api-resource}}';
+{{import-component}}
+
+const requestResource = new RequestResource();
+
+export default {
+  name: 'TeamUpsert',
+  components: { {{components}} },
+  data() {
+    return {
+      visible: false,
+      dataForm: {
+        id: 0,
+        name: '',
+        type: 0,
+      },
+      rules: {
+        name: [
+          { required: true, message: '公会名不能为空', trigger: 'blur' },
+        ],
+        type: [
+          { required: true, message: '请选择公会类型', trigger: 'blur' },
+        ],
+      },
+    };
+  },
+  computed: {
+    TypeOptions() {
+      return this.$store.getters.enums && this.$store.getters.enums['TeamType'];
+    },
+  },
+  created() {
+  },
+  methods: {
+    init(id) {
+      this.dataForm.id = id || 0;
+      if (this.dataForm.id === 0) { // 新增
+        this.visible = true;
+        this.$nextTick(() => {
+          this.$refs.dataForm.resetFields();
+        });
+      } else { // 更新
+        requestResource.get(id).then(response => {
+          this.visible = true;
+          this.$nextTick(() => {
+            this.$refs.dataForm.resetFields();
+            this.dataForm = response;
+          });
+        });
+      }
+    },
+    dataFormSubmit() {
+      this.$refs.dataForm.validate(valid => {
+        if (valid) {
+          const action = this.dataForm.id === 0 ? 'store' : 'update';
+          const params = this.dataForm.id === 0 ? [this.dataForm] : [this.dataForm.id, this.dataForm];
+
+          requestResource[action].apply(requestResource, params).then(() => {
+            this.$message({
+              message: '操作成功',
+              type: 'success',
+              duration: 1500,
+              onClose: () => {
+                this.visible = false;
+                this.$emit('refreshList');
+              },
+            });
+          }).catch(error => {
+            this.$message({
+              message: error.response.data.message,
+              type: 'error',
+            });
+          });
+        }
+      });
+    },
+  },
+};
+</script>

@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  php:
+    build:
+      context: ./service/dockerfile/php
+    container_name: thermometer_php
+    working_dir: /var/www/thermometer
+    volumes:
+      - ./:/var/www/thermometer:cached
+      - ./service/log/php:/var/log/php:cached
+      - ./service/config/php:/usr/local/etc/php:cached
+      - ./service/config/supervisor:/etc/supervisor:cached
+    ports:
+      - 9000:9000
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Asia/Shanghai
+
+    depends_on:
+      - mysql
+      - redis
+
+  nginx:
+    container_name: thermometer_nginx
+    build:
+      context: ./service/dockerfile/nginx
+    volumes:
+      - ./service/config/nginx:/etc/nginx:cached
+      - ./service/log/nginx:/var/log/nginx:cached
+        - ./:/var/www/thermometer
+    ports:
+      - 80:80
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - php
+
+  redis:
+    build:
+      context: ./service/dockerfile/redis
+    container_name: thermometer_redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./service/config/redis:/usr/local/etc/redis:cached
+
+  mysql:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: thermometer_mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - thermometer_mysql_data:/var/lib/mysql:cached
+    environment:
+      MYSQL_DATABASE: thermometer
+      MYSQL_USER: thermometer
+      MYSQL_PASSWORD: thermometer
+      MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_ROOT_PASSWORD}
+
+volumes:
+  thermometer_mysql_data:
+    external: false

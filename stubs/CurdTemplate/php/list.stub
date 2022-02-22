@@ -1,0 +1,26 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Requests\Admin\Request;
+use App\Lists\Lists;
+{{use-model}}
+
+class {{class-name}} extends Lists
+{
+    public function index(Request $request): array
+    {
+        $query = {{model-name}}::query();
+
+        if ($request->name) {
+            $query->where('name', 'like', "%{$request->name}%");
+        }
+
+        $lengthAwarePaginator = $query->orderBy($request->column ?: 'id', $request->order ?: 'asc')
+            ->paginate($request->limit ?: 20);
+
+        $data = $lengthAwarePaginator->toArray();
+
+        return $this->format($data);
+    }
+}

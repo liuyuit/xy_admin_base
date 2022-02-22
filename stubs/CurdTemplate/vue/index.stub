@@ -1,0 +1,91 @@
+<template>
+  <div class="app-container">
+    <div class="filter-container">
+      <el-input v-model="query.name" placeholder="公会名" style="width: 150px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+      <el-button v-permission="['admin.{{permission-name}}.store']" class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleUpsert()">新增</el-button>
+    </div>
+
+    <el-table v-loading="loading" :data="list" stripe border fit highlight-current-row style="width: 100%" @sort-change="handleSort">
+      {{content}}
+
+      <el-table-column align="center" label="操作" width="350">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row.platform === undefined" v-permission="['admin.{{permission-name}}.update']" type="primary" size="small" icon="el-icon-edit" @click="handleUpsert(scope.row.id)">
+            编辑
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <pagination v-show="total>0" :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList" />
+
+    <upsert ref="upsert" @refreshList="getList" />
+  </div>
+</template>
+
+<script>
+import Upsert from './Upsert';
+import Pagination from '@/components/Pagination';
+import RequestResource from '@/api/{{api-resource}}';
+import waves from '@/directive/waves';
+import permission from '@/directive/permission';
+{{import-component}}
+const requestResource = new RequestResource();
+
+export default {
+  name: 'SysGameIndex',
+  components: { Pagination, Upsert{{components}} },
+  directives: { waves, permission },
+  data() {
+    return {
+      list: [],
+      total: 0,
+      loading: true,
+      query: {
+        column: '',
+        order: '',
+        page: 1,
+        limit: 15,
+        keyword: '',
+      },
+    };
+  },
+  created() {
+    this.getList();
+  },
+  methods: {
+    // 列表
+    async getList() {
+      this.loading = true;
+      const { data, meta } = await requestResource.list(this.query);
+      this.list = data;
+      this.total = meta.total;
+      this.loading = false;
+    },
+    // 筛选
+    handleFilter() {
+      this.query.page = 1;
+      this.getList();
+    },
+    // 排序
+    handleSort(column) {
+      this.query.page = 1;
+      if (column.order) {
+        this.query.column = column.prop;
+        this.query.order = column.order === 'descending' ? 'desc' : 'asc';
+      } else {
+        this.query.column = '';
+        this.query.order = '';
+      }
+      this.getList();
+    },
+    // 新增或更新
+    handleUpsert(id) {
+      this.$nextTick(() => {
+        this.$refs.upsert.init(id);
+      });
+    },
+  },
+};
+</script>

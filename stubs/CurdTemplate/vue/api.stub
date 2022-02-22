@@ -1,0 +1,9 @@
+import Resource from '@/api/resource';
+
+class {{class-name}}Resource extends Resource {
+  constructor() {
+    super('{{class-name-slash}}');
+  }
+}
+
+export { {{class-name}}Resource as default };
